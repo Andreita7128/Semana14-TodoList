@@ -34,7 +34,6 @@ export async function getTasks() {
     const myTasks = [];
     const querySnapshot = await getDocs(collection(db, "tasks"));
     querySnapshot.forEach((doc) => {
-        //console.log(`${doc.id} => ${doc.data()}`);
         myTasks.push({
             ...doc.data(),
             id: doc.id
@@ -56,9 +55,16 @@ export async function addTask(taskTitle) {
 }
 
 
-export async function editDocument(title, id) {
+export async function editDocumentCheck(title, id) {
     await setDoc(doc(db, "tasks", id), {
         title: title,
         completed: true,
+    });
+}
+
+export async function editDocumentNoCheck(title, id) {
+    await setDoc(doc(db, "tasks", id), {
+        title: title,
+        completed: false,
     });
 }

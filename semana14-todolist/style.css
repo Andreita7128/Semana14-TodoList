@@ -9,7 +9,12 @@
 
 h1 {
   font-family: 'Paytone One', sans-serif;
-  margin: 30px; 
+  margin: 20px; 
+}
+
+p {
+  margin-top: -15px;
+  margin-bottom: 30px;
 }
 
 h2 {

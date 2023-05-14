@@ -1,5 +1,5 @@
 import './style.css'
-import { getTasks, addTask, editDocument } from './firebase.js'
+import { getTasks, addTask, editDocumentCheck, editDocumentNoCheck } from './firebase.js'
 
 let tasks = [];
 await renderTasks();
@@ -19,9 +19,14 @@ async function renderTasks(){
     elem.textContent = task.title;
     if(task.completed){
       elem.style.textDecoration = 'line-through'
+      elem.style.color = '#B2B2B2';
     }
     elem.addEventListener('click', async ()=> {
-      await editDocument(task.title, task.id)
+      if(task.completed){
+        await editDocumentNoCheck(task.title, task.id)
+      } else {
+        await editDocumentCheck(task.title, task.id)
+      }
       await renderTasks();
     });
 
